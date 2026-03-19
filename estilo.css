@@ -1,0 +1,144 @@
+/* FUENTE MODERNA */
+body{
+margin:0;
+font-family: 'Segoe UI', 'Poppins', Arial, sans-serif;
+background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* ENCABEZADO */
+.header{
+background: linear-gradient(90deg, #ff512f, #dd2476);
+color:white;
+padding:18px;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+letter-spacing:1px;
+box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* MENÚ */
+.menu{
+background:#2c3e50;
+padding:12px;
+text-align:center;
+}
+
+.menu a{
+color:#ecf0f1;
+margin:0 12px;
+text-decoration:none;
+font-weight:bold;
+transition:0.3s;
+}
+
+.menu a:hover{
+color:#f1c40f;
+}
+
+/* CONTENEDOR */
+.container{
+width:90%;
+max-width:850px;
+margin:auto;
+margin-top:25px;
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+animation:fadeIn 0.5s ease-in-out;
+}
+
+/* ANIMACIÓN */
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(10px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* TITULOS */
+h2{
+text-align:center;
+color:#2c3e50;
+font-weight:600;
+}
+
+/* INPUTS */
+input, select{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:1px solid #ccc;
+transition:0.3s;
+font-size:14px;
+}
+
+input:focus, select:focus{
+border-color:#ff512f;
+box-shadow:0 0 6px #ff512f;
+outline:none;
+}
+
+/* BOTONES */
+button{
+width:100%;
+padding:12px;
+background: linear-gradient(45deg,#ff512f,#dd2476);
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:15px;
+font-weight:bold;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+opacity:0.9;
+}
+
+/* TABLAS */
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+border-radius:10px;
+overflow:hidden;
+}
+
+th{
+background:#ff512f;
+color:white;
+padding:12px;
+font-size:14px;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #eee;
+font-size:14px;
+}
+
+tr:hover{
+background:#f9f9f9;
+}
+
+/* IMÁGENES */
+img{
+border-radius:8px;
+box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* LINKS */
+a{
+display:inline-block;
+margin-top:10px;
+color:#ff512f;
+font-weight:bold;
+text-decoration:none;
+}
+
+a:hover{
+text-decoration:underline;
+}

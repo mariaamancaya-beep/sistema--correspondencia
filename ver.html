@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Documento</title>
+<link rel="stylesheet" href="estilos.css">
+
+<script>
+
+function cargar(){
+
+let params = new URLSearchParams(window.location.search);
+let numero = params.get("doc");
+
+let lista = JSON.parse(localStorage.getItem("docs")) || [];
+
+let doc = lista.find(d => d.numero === numero);
+
+if(!doc){
+document.getElementById("contenido").innerHTML="Documento no encontrado";
+return;
+}
+
+let html = `
+<h2>📄 Documento</h2>
+
+<p><b>Número:</b> ${doc.numero}</p>
+<p><b>Fecha:</b> ${doc.fecha}</p>
+<p><b>Tipo:</b> ${doc.tipo}</p>
+<p><b>Remitente:</b> ${doc.remitente}</p>
+<p><b>Estado:</b> ${doc.estado}</p>
+`;
+
+if(doc.foto){
+html += <img src="${doc.foto}" width="200">;
+}
+
+document.getElementById("contenido").innerHTML = html;
+
+}
+
+</script>
+
+</head>
+
+<body onload="cargar()">
+
+<div class="header">
+Sistema de Correspondencia
+</div>
+
+<div class="container" id="contenido">
+
+</div>
+
+</body>
+</html>

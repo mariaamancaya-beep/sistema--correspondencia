@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<link rel="stylesheet" href="estilo.css">
+
+<script>
+function entrar(){
+
+let u=document.getElementById("user").value;
+let p=document.getElementById("pass").value;
+
+if(u=="admin" && p=="1234"){
+localStorage.setItem("usuario",u);
+window.location="panel.html";
+}else{
+alert("Datos incorrectos");
+}
+
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Login</h2>
+
+<input id="user" placeholder="Usuario">
+<input id="pass" type="password" placeholder="Contraseña">
+
+<button onclick="entrar()">Ingresar</button>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Seguimiento</title>
+<link rel="stylesheet" href="estilo.css">
+
+<script>
+
+function cargar(){
+
+let lista=JSON.parse(localStorage.getItem("docs"))||[];
+
+let tabla=document.getElementById("tabla");
+
+tabla.innerHTML="";
+
+let fila=tabla.insertRow();
+fila.innerHTML="<th>N°</th><th>Estado</th><th>Acción</th>";
+
+for(let i=0;i<lista.length;i++){
+
+let doc=lista[i];
+
+let f=tabla.insertRow();
+
+f.insertCell(0).innerText=doc.numero;
+
+let estadoCelda=f.insertCell(1);
+estadoCelda.innerText=doc.estado;
+
+if(doc.estado=="Pendiente") estadoCelda.style.color="orange";
+if(doc.estado=="En proceso") estadoCelda.style.color="blue";
+if(doc.estado=="Concluido") estadoCelda.style.color="green";
+
+let btn=document.createElement("button");
+btn.innerText="Finalizar";
+
+btn.onclick=function(){
+
+lista[i].estado="Concluido";
+
+localStorage.setItem("docs", JSON.stringify(lista));
+
+alert("Documento concluido");
+
+cargar();
+
+};
+
+f.insertCell(2).appendChild(btn);
+
+}
+
+}
+
+</script>
+
+</head>
+
+<body onload="cargar()">
+
+<div class="container">
+
+<h2>Seguimiento</h2>
+
+<table id="tabla"></table>
+
+<a href="panel.html">Volver</a>
+
+</div>
+
+</body>
+</html>

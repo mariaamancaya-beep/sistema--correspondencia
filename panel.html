@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Panel</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Panel Administrativo</h2>
+
+<p>Bienvenido: <b id="user"></b></p>
+
+<a href="registro.html">Registrar Documento</a><br><br>
+<a href="historial.html">Ver Historial</a><br><br>
+<a href="seguimiento.html">Seguimiento</a><br><br>
+<a href="login.html">Cerrar sesión</a>
+
+<hr>
+
+<div id="stats"></div>
+
+<script>
+
+let usuario=localStorage.getItem("usuario");
+document.getElementById("user").innerText=usuario;
+
+let lista=JSON.parse(localStorage.getItem("docs"))||[];
+
+let total=lista.length;
+let pendientes=lista.filter(d=>d.estado=="Pendiente").length;
+let proceso=lista.filter(d=>d.estado=="En proceso").length;
+let concluidos=lista.filter(d=>d.estado=="Concluido").length;
+
+document.getElementById("stats").innerHTML=`
+<h3>Estadísticas</h3>
+Total: ${total}<br>
+Pendientes: ${pendientes}<br>
+En proceso: ${proceso}<br>
+Concluidos: ${concluidos}
+`;
+
+</script>
+
+</div>
+
+</body>
+</html>

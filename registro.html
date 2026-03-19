@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registro</title>
+<link rel="stylesheet" href="estilo.css">
+
+<!-- QR -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+
+function guardar(){
+
+let tipo = document.getElementById("tipo").value;
+let remitente = document.getElementById("remitente").value;
+let destinatario = document.getElementById("destinatario").value;
+let estado = document.getElementById("estado").value;
+
+if(remitente==""){
+alert("Complete el remitente");
+return;
+}
+
+// número y fecha
+let numero = "DOC-" + new Date().getTime();
+let fecha = new Date().toLocaleDateString();
+
+// QR
+let qr = "ver.html?doc=" + numero;
+
+// objeto base
+let doc = {
+numero: numero,
+fecha: fecha,
+tipo: tipo,
+remitente: remitente,
+destinatario: destinatario,
+estado: estado,
+qr: qr
+};
+
+// 📷 FOTO
+let archivo = document.getElementById("foto").files[0];
+
+if(archivo){
+
+let lector = new FileReader();
+
+lector.onload = function(){
+doc.foto = lector.result;
+guardarFinal(doc);
+};
+
+lector.readAsDataURL(archivo);
+
+}else{
+guardarFinal(doc);
+}
+
+}
+
+// 🔒 FUNCIÓN FINAL (GUARDADO REAL)
+function guardarFinal(doc){
+
+let lista = JSON.parse(localStorage.getItem("docs"));
+
+if(lista==null){
+lista=[];
+}
+
+lista.push(doc);
+
+localStorage.setItem("docs", JSON.stringify(lista));
+
+alert("Documento guardado correctamente");
+
+// limpiar
+document.getElementById("remitente").value="";
+document.getElementById("foto").value="";
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<!-- ENCABEZADO -->
+<div class="header">
+Sistema de Correspondencia
+</div>
+
+<!-- MENÚ -->
+<div class="menu">
+<a href="panel.html">Panel</a>
+<a href="registro.html">Registrar</a>
+<a href="historial.html">Historial</a>
+<a href="seguimiento.html">Seguimiento</a>
+<a href="login.html">Salir</a>
+</div>
+
+<!-- CONTENIDO -->
+<div class="container">
+
+<h2>📄 Registro de Documentos</h2>
+
+<select id="tipo">
+<option>Carta</option>
+<option>Memorando</option>
+<option>Oficio</option>
+<option>circular</option>
+<option>cerificado</option>
+<option>compromiso</option>
+<option>permisos</option>
+</select>
+
+<input id="remitente" placeholder="Remitente">
+<input id="destinatario" placeholder="destinatario">
+<select id="estado">
+<option>Pendiente</option>
+<option>En proceso</option>
+</select>
+
+<br>
+
+<label>📷 Adjuntar foto:</label>
+<input type="file" id="foto" accept="image/*">
+
+<br><br>
+
+<button onclick="guardar()">Guardar Documento</button>
+
+</div>
+
+</body>
+</html>
